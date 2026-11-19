@@ -27,7 +27,7 @@ export default function Research() {
             <p>{p.text}</p>
             {p.href && (
               <p className="links">
-                <a href={p.href}>Read the paper</a>
+                <a href={p.href}>Read on IEEE Xplore</a>
               </p>
             )}
           </article>

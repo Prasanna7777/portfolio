@@ -4,15 +4,25 @@ export const profile = {
   name: "Lakshmi Prasanna Yadlapalli",
   shortName: "Lakshmi Prasanna",
   eyebrow: "Software engineer, moving into AI",
-  lead: "I build web interfaces and the AI systems behind them. Two years as an engineer at Target, now an M.Tech student in AI and ML at IIT Hyderabad (graduating June 2027).",
+  lead: "Two years as a software engineer at Target, now an M.Tech student in AI and ML at IIT Hyderabad (graduating June 2027). I am interested in building AI systems that are grounded, reliable and useful in real-world applications.",
   about: [
     "I am a software engineer finishing an M.Tech in AI and ML at IIT Hyderabad. Before that, I spent two years at Target building customer-facing features on Target.com in React and TypeScript, working closely with design, accessibility and mobile teams.",
     "My time in software engineering shaped how I approach problems, with an emphasis on thoughtful implementation, reliability, and building solutions that work in real-world settings. I've been building on that foundation through academic research and hands-on exploration of AI/ML techniques.",
   ],
-  skills: [
-    "React", "Next.js", "TypeScript", "JavaScript", "HTML and CSS", "Accessibility",
-    "Python", "FastAPI", "SQL", "PyTorch", "scikit-learn", "XGBoost", "Git",
+  skillGroups: [
+    { label: "Languages", items: ["Python", "JavaScript", "TypeScript", "SQL"] },
+    { label: "Frontend and backend", items: ["React", "Next.js", "HTML", "CSS", "FastAPI", "Accessibility"] },
+    { label: "ML and deep learning", items: ["PyTorch", "TensorFlow", "Keras", "scikit-learn", "XGBoost", "HuggingFace Transformers"] },
+    { label: "Data and visualization", items: ["NumPy", "Pandas", "Matplotlib", "Seaborn"] },
+    { label: "Tools", items: ["Git", "GitHub", "VS Code"] },
   ],
+  links: {
+    github: "https://github.com/Prasanna7777",
+    linkedin: "https://www.linkedin.com/in/lakshmi-prasanna-yadlapalli-748a641a4",
+  },
+  // When you have a resume that is safe to share publicly, put the PDF in public/ and set this,
+  // for example: "Lakshmi_Prasanna_Yadlapalli_Resume.pdf". The Resume button appears only when this is set.
+  resume: undefined as string | undefined,
 };
 
 export interface Paper {
@@ -39,11 +49,13 @@ export const research = {
     {
       title: "Comparative Deep Network Analysis of Speech Emotion Recognition Models using Data Augmentation",
       venue: "CENTCON 2022 (IEEE)",
+      href: "https://ieeexplore.ieee.org/document/10051557",
       text: "Compared five deep learning architectures for speech emotion recognition on the MELD dataset. Targeted data augmentation handled the class imbalance and brought the best model to 92% accuracy.",
     },
     {
       title: "Automatic Correction of Speech Recognized Mathematical Equations using Encoder-Decoder Attention Model",
       venue: "INDICON 2022 (IEEE)",
+      href: "https://ieeexplore.ieee.org/document/10039926",
       text: "Built an encoder-decoder attention model that corrects the grammar, spelling and phonetic errors speech recognition adds when it transcribes spoken math equations. It lowered the word and character error rates, which helps voice-based tools for math education and accessibility.",
     },
   ] as Paper[],
@@ -114,7 +126,7 @@ export const reviewForm: {
   video?: Video;
 } = {
   title: "Product review form (web UI)",
-  text: "The product review form is where guests share what they think of something they bought. Our UX designer redesigned it into two variants, and I built the web UI for both, turning the designs into accessible React and TypeScript components. I also fixed accessibility problems from the old form and moved it off legacy API endpoints that the web platform had fallen behind on.",
+  text: "The product review form is where guests share what they think of something they bought. Our UX designer redesigned it into two variants, and I built the web UI for both, turning the designs into accessible React and TypeScript components. I also tackled the new form's complex accessibility requirements.",
   note: "The form is part of the public Target.com site. Target and its logos belong to Target. This page is my own and is not endorsed by Target.",
   viewIntro: "Want to see it? You need to sign in to Target.com, or sign up for an account.",
   viewLink: {
@@ -137,23 +149,71 @@ export interface Project {
   //   { embed: "https://www.youtube.com/embed/VIDEO_ID", caption: "Responsive layout on phone and desktop" },
   // ]
   videos?: Video[];
+  // Optional short note shown under the links.
+  note?: string;
 }
+
+// Live demo links. Leave a URL empty ("") to hide that project's Live demo link.
+const ragDemoUrl = "https://prasanna7777.github.io/rag-based-claim-verification-system/";
+const churnDemoUrl = "https://prasanna7777.github.io/customer-churn-prediction/";
 
 export const projects: Project[] = [
   {
+    title: "Customer churn prediction",
+    text: "Predicts which telecom customers are likely to leave. An XGBoost model reached 0.848 ROC-AUC on the IBM Telco churn dataset, and SHAP explains each customer's risk.",
+    tech: "Python, XGBoost, SHAP, FastAPI, React",
+    links: [
+      { label: "Code on GitHub", href: "https://github.com/Prasanna7777/customer-churn-prediction" },
+      ...(churnDemoUrl ? [{ label: "Live demo", href: churnDemoUrl }] : []),
+    ],
+    videos: [
+      { src: "media/xg1.mp4", caption: "Testing the demo: predicting a customer's churn risk." },
+      { src: "media/xg_responsive.mp4", caption: "Responsive layout: the app on phone and desktop widths." },
+    ],
+  },
+  {
     title: "Claim verification with RAG",
-    text: "Checks a short claim against Wikipedia and returns True, False, Misleading or Unknown. It finds the right article, retrieves the most relevant section, and then verifies that every quote the model cites really appears in the evidence. If the evidence is weak, it answers Unknown instead of guessing.",
+    text: "Checks a short claim against Wikipedia and returns True, False, Misleading or Unknown, with quotes that are verified against the evidence. If the evidence is weak, it answers Unknown instead of guessing.",
     tech: "Python, sentence-transformers, FAISS, LLM API, FastAPI, React",
-    links: [{ label: "Code and demo on GitHub", href: "https://github.com/YOUR-USERNAME/YOUR-CLAIM-REPO" }],
+    links: [
+      { label: "Code on GitHub", href: "https://github.com/Prasanna7777/rag-based-claim-verification-system" },
+      ...(ragDemoUrl ? [{ label: "Live demo (front end only)", href: ragDemoUrl }] : []),
+    ],
+    note: "The live page is the front end only. The backend runs only locally, so checking a claim there shows an error. The demo videos above show the full app working.",
     videos: [
       { src: "media/rag.mp4", caption: "Testing the demo: checking a claim and reading the verdict." },
       { src: "media/responsive_rag.mp4", caption: "Responsive layout: the app on phone and desktop widths." },
     ],
   },
-  {
-    title: "Customer churn prediction",
-    text: "Compares an XGBoost model with a logistic regression baseline on the IBM Telco dataset. XGBoost reached 0.848 ROC-AUC, and SHAP explains each customer's risk so a non-technical user can see what drives it.",
-    tech: "Python, XGBoost, SHAP, FastAPI, React",
-    links: [{ label: "Code and demo on GitHub", href: "https://github.com/YOUR-USERNAME/YOUR-CHURN-REPO" }],
-  },
 ];
+
+export const education = {
+  degrees: [
+    {
+      degree: "M.Tech, Artificial Intelligence and Machine Learning",
+      school: "IIT Hyderabad",
+      year: "Graduating June 2027",
+      score: "CGPA 8.8",
+    },
+    {
+      degree: "B.Tech",
+      school: "Amrita Vishwa Vidyapeetham",
+      year: "2023",
+      score: "CGPA 9.05",
+    },
+  ],
+  achievements: [
+    "Ranked 6th among 72 students in B.Tech, graduating with Distinction.",
+    "Awarded a 50% merit-based scholarship for sustained academic performance during B.Tech.",
+  ],
+  coursesLabel: "Relevant courses",
+  courses: [
+    "Deep Learning",
+    "Foundations of Machine Learning",
+    "Visual Computing",
+    "Topics in Optimization",
+    "Linear Algebra",
+    "Probability and Stochastic Processes",
+    "Advanced Data Structures and Algorithms",
+  ],
+};

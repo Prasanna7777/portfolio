@@ -1,25 +1,15 @@
 :root {
-  --bg: #fbfaf7;
-  --surface: #ffffff;
-  --text: #1c2326;
-  --muted: #5d696d;
-  --line: #e3e0d8;
-  --accent: #0f6b66;
-  --accent-text: #ffffff;
-  --chip: #e8f1ef;
+  color-scheme: dark;
+  --bg: #0a1012;
+  --surface: #131b24;
+  --text: #e8edf3;
+  --muted: #9aa6b8;
+  --line: #243044;
+  --accent: #5fd0a5;
+  --accent-text: #06241a;
+  --gold: #e8c468;
+  --chip: #14242a;
   --radius: 14px;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #12181a;
-    --surface: #192124;
-    --text: #e9eeee;
-    --muted: #9aa8aa;
-    --line: #2a3538;
-    --accent: #4fc3b9;
-    --accent-text: #0b1a19;
-    --chip: #1f2f2e;
-  }
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
@@ -96,3 +86,225 @@ h3 { font-size: 1.1rem; margin: 0 0 6px; }
 .howto { margin: 16px 0 0; padding: 4px 0 4px 16px; border-left: 3px solid var(--accent); }
 .howto ol { margin: 6px 0 8px; padding-left: 20px; }
 .howto li { margin-bottom: 4px; }
+
+/* Color accents: teal for actions and structure, gold for small labels */
+body { background: radial-gradient(900px 500px at 12% -5%, rgba(95, 208, 165, 0.12), transparent 60%), var(--bg); background-attachment: fixed; }
+.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.85rem; }
+h2 { border-left: 4px solid var(--accent); padding-left: 12px; }
+h3 .muted, h4 .muted { color: var(--gold); }
+.tech { color: var(--gold); }
+.quote footer { color: var(--gold); }
+.chips li { color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+.card { transition: border-color 0.2s; }
+.card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.primary:hover { background: var(--gold); border-color: var(--gold); color: #1d1500; }
+.links a:hover { color: var(--gold); }
+.brand:hover { color: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+
+.social { display: flex; gap: 12px; list-style: none; padding: 0; margin: 20px 0 0; }
+.social a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--text); }
+.social a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Skills, expandable project details, education */
+.skills { margin: 8px 0 0; }
+.skill-group { display: grid; gap: 4px; margin: 12px 0; }
+.skill-group dt { color: var(--gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.skill-group dd { margin: 0; }
+.skill-group .chips { margin: 0; }
+.achievements { margin: 16px 0 0; padding-left: 20px; }
+.achievements li { margin-bottom: 6px; }
+
+/* Menu button for narrow screens */
+.menu-btn { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; }
+.menu-btn:hover { border-color: var(--accent); color: var(--accent); }
+@media (max-width: 719px) {
+  .menu-btn { display: inline-flex; }
+  .bar { flex-wrap: nowrap; }
+  .site-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 4px 16px 12px; }
+  .site-nav[data-open="true"] { display: block; }
+  .site-nav ul { flex-direction: column; gap: 0; }
+  .site-nav a { display: block; padding: 12px 4px; font-size: 17px; border-bottom: 1px solid var(--line); }
+  .site-nav li:last-child a { border-bottom: 0; }
+}
+
+/* Large screens: wider content and larger text so the page doesn't look small */
+@media (min-width: 1400px) {
+  body { font-size: 19px; }
+  .wrap { width: min(1200px, 100% - 64px); }
+  nav a, .btn, .site-nav a { font-size: 17px; }
+  .chips li { font-size: 16px; }
+  .tech, .quote footer { font-size: 16px; }
+  .skill-group dt { font-size: 0.9rem; }
+  .social a { width: 50px; height: 50px; }
+  html { scroll-padding-top: 84px; }
+}
+@media (min-width: 1800px) {
+  body { font-size: 22px; }
+  .wrap { width: min(1440px, 100% - 96px); }
+  nav a, .btn, .site-nav a { font-size: 19px; }
+  .chips li { font-size: 18px; }
+  .tech, .quote footer { font-size: 18px; }
+  .social a { width: 56px; height: 56px; }
+  .bar { padding: 16px 0; }
+  html { scroll-padding-top: 96px; }
+}
+@media (min-width: 1400px) {
+  .lead { font-size: 1.4rem; max-width: 42em; }
+  h1 { font-size: 4rem; }
+  h2 { font-size: 1.9rem; }
+  h3 { font-size: 1.35rem; }
+}
+@media (min-width: 1800px) {
+  .lead { font-size: 1.6rem; }
+  h1 { font-size: 4.6rem; }
+  h2 { font-size: 2.2rem; }
+  h3 { font-size: 1.55rem; }
+}
+
+/* Toned down: gentler large-screen sizes (these override the blocks above) */
+@media (min-width: 1400px) {
+  body { font-size: 18px; }
+  .wrap { width: min(1100px, 100% - 64px); }
+  nav a, .btn, .site-nav a { font-size: 16px; }
+  .chips li, .tech, .quote footer { font-size: 15px; }
+  .social a { width: 46px; height: 46px; }
+  .lead { font-size: 1.25rem; }
+  h1 { font-size: 3.4rem; }
+  h2 { font-size: 1.65rem; }
+  h3 { font-size: 1.2rem; }
+  html { scroll-padding-top: 76px; }
+}
+@media (min-width: 1800px) {
+  body { font-size: 19px; }
+  .wrap { width: min(1200px, 100% - 96px); }
+  nav a, .btn, .site-nav a { font-size: 16px; }
+  .chips li, .tech, .quote footer { font-size: 15px; }
+  .social a { width: 46px; height: 46px; }
+  .bar { padding: 12px 0; }
+  .lead { font-size: 1.3rem; }
+  h1 { font-size: 3.6rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  html { scroll-padding-top: 76px; }
+}
+
+/* Icons sit beside the main button */
+.actions { align-items: center; }
+.actions .social { margin: 0; }
+
+/* Highlight the nav link for the section in view */
+nav a[aria-current="location"] { color: var(--accent); font-weight: 600; }
+@media (min-width: 720px) {
+  nav a[aria-current="location"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+}
+
+/* Projects: one full-width card each, videos side by side */
+.stack { display: grid; gap: 20px; grid-template-columns: 1fr; }
+.stack .card + .card { margin-top: 0; }
+.videos { display: grid; gap: 16px; grid-template-columns: 1fr; margin-top: 16px; }
+.videos .video { margin: 0; }
+.videos .video video { max-height: 360px; }
+@media (min-width: 900px) {
+  .videos { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+/* Same-size video boxes: fixed 16:9 frame, video fits inside without cropping */
+.videos .video video { width: 100%; aspect-ratio: 16 / 9; max-height: none; object-fit: contain; background: #000; }
+
+/* Final large-screen sizes: close to normal text, slightly wider layout (overrides blocks above) */
+@media (min-width: 1400px) {
+  body { font-size: 17px; }
+  .wrap { width: min(1100px, 100% - 64px); }
+  nav a, .btn, .site-nav a { font-size: 15px; }
+  .chips li { font-size: 14px; }
+  .tech, .quote footer { font-size: 14px; }
+  .social a { width: 44px; height: 44px; }
+  .lead { font-size: 1.15rem; }
+  h1 { font-size: 3.2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.1rem; }
+  html { scroll-padding-top: 72px; }
+}
+@media (min-width: 1800px) {
+  body { font-size: 18px; }
+  .wrap { width: min(1200px, 100% - 96px); }
+  .lead { font-size: 1.2rem; }
+  h1 { font-size: 3.4rem; }
+  h2 { font-size: 1.6rem; }
+  h3 { font-size: 1.15rem; }
+}
+
+/* Smaller text overall (final; overrides everything above). Large screens only get a wider layout. */
+body { font-size: 16px; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); }
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.05rem; }
+.lead { font-size: 1.05rem; }
+nav a, .btn, .site-nav a { font-size: 14px; }
+.chips li, .tech, .quote footer { font-size: 13px; }
+.social a, .menu-btn { width: 40px; height: 40px; }
+@media (max-width: 719px) { .site-nav a { font-size: 16px; } .menu-btn { width: 44px; height: 44px; } }
+@media (min-width: 1400px) {
+  body { font-size: 16px; }
+  .wrap { width: min(1080px, 100% - 64px); }
+  h1 { font-size: 2.7rem; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.05rem; }
+  .lead { font-size: 1.05rem; }
+  nav a, .btn { font-size: 14px; }
+  .chips li, .tech, .quote footer { font-size: 13px; }
+  .social a { width: 40px; height: 40px; }
+}
+@media (min-width: 1800px) {
+  body { font-size: 16px; }
+  .wrap { width: min(1080px, 100% - 96px); }
+  h1 { font-size: 2.7rem; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.05rem; }
+  .lead { font-size: 1.05rem; }
+}
+
+/* Compact sizing (last rule wins): smaller text and tighter cards */
+body { font-size: 15px; }
+h1 { font-size: clamp(1.8rem, 4.5vw, 2.4rem); }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1rem; }
+.lead { font-size: 1rem; }
+.eyebrow { font-size: 0.78rem; }
+nav a, .btn, .site-nav a { font-size: 13px; }
+.chips li, .tech, .quote footer, .video figcaption { font-size: 12.5px; }
+.card { padding: 16px 18px; }
+.hero { padding: 56px 0 24px; }
+section { padding-top: 36px; }
+.social a { width: 38px; height: 38px; }
+.menu-btn { width: 42px; height: 42px; }
+@media (max-width: 719px) { .site-nav a { font-size: 15px; } }
+
+/* Final sizing: equal to the previous design viewed at 90% zoom (overrides everything above) */
+body { font-size: 14.4px; }
+h1 { font-size: clamp(1.8rem, 4.5vw, 2.45rem); }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 0.95rem; }
+.lead { font-size: 0.95rem; }
+.eyebrow { font-size: 0.75rem; }
+nav a, .btn { font-size: 12.6px; }
+.chips li, .tech, .quote footer, .video figcaption { font-size: 12px; }
+.card { padding: 18px 20px; }
+.social a { width: 36px; height: 36px; }
+@media (max-width: 719px) {
+  body { font-size: 16px; }
+  h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.05rem; }
+  .lead { font-size: 1.05rem; }
+  .btn { font-size: 15px; }
+  .chips li, .tech, .quote footer, .video figcaption { font-size: 14px; }
+  .site-nav a { font-size: 16px; }
+  .social a { width: 44px; height: 44px; }
+  .menu-btn { width: 44px; height: 44px; }
+}
+
+/* Intro under the name uses the full content width, like the About text */
+.lead { max-width: none; }

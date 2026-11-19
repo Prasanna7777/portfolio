@@ -7,11 +7,6 @@ export default function About() {
       {profile.about.map((p) => (
         <p key={p}>{p}</p>
       ))}
-      <ul className="chips" aria-label="Skills">
-        {profile.skills.map((s) => (
-          <li key={s}>{s}</li>
-        ))}
-      </ul>
     </section>
   );
 }
